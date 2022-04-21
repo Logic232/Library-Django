@@ -1,0 +1,91 @@
+{% extends 'main.html' %} {% block content %}
+
+<main>
+    {% if page == 'login' %}
+    <div>
+      <div>
+        <div>
+          <div>
+            <h3>Login</h3>
+          </div>
+        </div>
+        <div>
+          <h2>Find your book</h2>
+  
+          <form class="form" method="POST" action="">
+            {% csrf_token %}
+  
+            <div>
+              <label for="login">Username</label>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                placeholder="e.g. kowal_kox"
+                required
+              />
+            </div>
+            <div>
+              <label for="password">Password</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+                required
+              />
+            </div>
+            {% if user_check == True %}
+            <p>Your login or password is incorrect.</p>
+            {% endif %}
+            <button type="submit">
+              Login
+            </button>
+          </form>
+  
+          <div>
+            <p>Haven't signed up yet?</p>
+            <a href="{% url 'register' %}">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <div>
+      <div>
+        <div>
+          <div>
+            <h3>Register</h3>
+          </div>
+        </div>
+        <div>
+          <h2>Find your book</h2>
+          <form class="form" method="POST" action="">
+            {% csrf_token %} {% for field in form %}
+            <div>
+              <label for="login">{{field.label}}</label>
+              {{field}}
+            </div>
+            {% endfor %}
+            {% if name_check == True %}
+            <p>This username already exists.</p>
+            {% elif password_check == True %}
+            <p>Passwords are not the same.</p>
+            {% else %}
+            <p>Your password is too weak.</p>
+            {% endif %}
+            <button type="submit">
+              Register
+            </button>
+          </form>
+  
+          <div>
+            <p>Already signed up?</p>
+            <a href="{% url 'login' %}">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </main>
+  {% endblock content %}

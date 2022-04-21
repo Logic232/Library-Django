@@ -1,0 +1,66 @@
+{% extends 'main.html' %} {% block content %}
+
+<main>
+    <div>
+      <div>
+        <div>
+          <div>
+            <a href="{% url 'home' %}">
+              back
+            </a>
+          </div>
+          {% if request.user.is_staff %}
+          <div>
+
+            <form method="POST" action="">
+              {% csrf_token %}
+              <button type="submit" name="update">Update book</button>
+            </form>
+
+            <form method="POST" action="">
+              {% csrf_token %}
+              <button type="submit" name="delete">Delete book</button>
+            </form>
+            {% if request.method == 'POST' and 'delete' in request.POST %}
+            <form class="form" action="" method="POST">
+              {% csrf_token %}
+              <div>
+                <p>Are you sure to delete the book?</p>
+                <a href="{% url 'book' book_name %}">Cancel</a>
+                <button type="submit" name="check">Delete</button>
+              </div>
+            </form>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+        <div>
+          <div>
+            <div>
+              <h3>Title: {{book.book_name}}</h3>
+                <span>Author: {{book.author_name}}</span>
+              </a>
+              <br>
+              <p>Publisher: {{book.publisher_name}}</p>
+              <span>Book edition: {{book.book_edition}}</span>
+              <br>
+              <span>ISBN: {{book.book_isbn}}</span>
+            </div>
+          </div>
+        </div>
+        {% if request.user.is_authenticated %}
+        <div>
+          {% if book.loan_id.loan_is_active == True %}
+            <p>Book is on loan</p>
+          {% else %}
+          <form method="POST" action="">
+            {% csrf_token %}
+            <button type="submit" name="loan">Check out</button>
+          </form>
+          {% endif %}
+        </div>
+      {% endif %}
+      </div>
+    </div>
+  </main>
+  {% endblock content %}

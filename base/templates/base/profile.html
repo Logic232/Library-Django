@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% if request.user == user %}
+<main>
+    <div>
+      <div>
+        <div>
+          <div>
+            <h3>Login / {{user.username}}</h3>
+            <h3>Imie Nazwisko / {{user.first_name}} {{user.last_name}}</h3>
+            <p>Mail / {{user.email}}</p>
+            <a href="{% url 'update-user' %}">Edit Profile</a>
+          </div>
+        </div>
+        <div>
+          <div>
+            <h2>Your last check out:</a>
+            </h2>
+          </div>
+        </div>
+        {% if loans.exists %}
+        {% for loan in last_loan %}
+        <div>
+            <h3>Title: {{loan.books.book_name}}</h3>
+            <h3>Author: {{loan.books.author_name}}</h3>
+            <h3>Publisher: {{loan.books.publisher_name}}</h3>            
+            <h3>Date of check out: {{loan.loan_date|date:'m.d.Y'}}</h3>
+        </div>
+        <a href="{% url 'loans-user' user.id %}">
+          <p>Show all my check outs ({{number_of_loans}})</p>
+        </a>
+        {% endfor %}
+        {% else %}
+        <div>
+          <h2>Lack of any check outs</h2>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </main>
+{% endif %}
+{% endblock %}

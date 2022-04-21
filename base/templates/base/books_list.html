@@ -1,0 +1,12 @@
+{% for book in books %}
+<div>
+  <br>
+  <div>
+    <a href="{% url 'book' book.book_name %}">Title: {{book.book_name}}</a>
+  </div>
+  <div>
+      <p>Author: {{book.author_name.author_name}}</p>
+      <p>Publisher: {{book.publisher_name.publisher_name}}</p>
+  </div>
+</div>
+{% endfor %}
