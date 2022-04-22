@@ -1,0 +1,10 @@
+{% extends 'main.html' %} {% block content %}
+
+<form method="GET" action="{% url 'home_sec' %}">
+  <input name="q" required placeholder="Search for books..." />
+  <button type="submit">Search</button>
+</form>
+
+{% if request.user.is_staff %}
+<a href="{% url 'create-book' %}"> Add book </a>
+{% else %} {% endif %} {% include 'base/books_list.html' %} {% endblock %}
