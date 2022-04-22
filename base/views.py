@@ -269,3 +269,15 @@ def loansUser(request, pk):
     context = {'user': user, 'loans': loans, 'admin_loans': admin_loans, 'loan_submit': loan_submit}
 
     return render(request, 'base/loans.html', context)
+
+def server_error(request, exception=None):
+    return render(request, 'base/500.html')
+
+def page_not_found(request, exception=None):
+    return render(request, 'base/404.html')
+
+def permission_denied(request, exception=None):
+    return render(request, 'base/403.html')
+
+def bad_request(request, exception=None):
+    return render(request, 'base/400.html')
