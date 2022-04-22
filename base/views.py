@@ -211,18 +211,13 @@ def addBook(request):
     return render(request, 'base/book_form.html', context)
 
 @login_required(login_url='/login')
-def userProfile(request, pk):
-    user = User.objects.get(id=pk)
-    loans = Loans.objects.all().select_related('user_name', 'books').filter(user_name = pk).filter(loan_is_active = True)
+def userProfile(request):
+    current_user = request.user
+    loans = Loans.objects.all().select_related('user_name', 'books').filter(user_name = current_user.id).filter(loan_is_active = True)
     last_loan = loans[0:1]
     number_of_loans = loans.count()
 
-
-
-    if request.user != user:
-        return redirect('home')
-
-    context = {'user': user, 'loans': loans, 'last_loan': last_loan, 'number_of_loans': number_of_loans}
+    context = {'loans': loans, 'last_loan': last_loan, 'number_of_loans': number_of_loans}
     return render(request, 'base/profile.html', context)
 
 
@@ -242,9 +237,9 @@ def updateUser(request):
 
 
 @login_required(login_url='login')
-def loansUser(request, pk):
-    user = User.objects.get(id=pk)
-    loans = Loans.objects.all().select_related('user_name', 'books').filter(user_name = pk).filter(loan_is_active = True)
+def loansUser(request):
+    current_user = request.user
+    loans = Loans.objects.all().select_related('user_name', 'books').filter(user_name = current_user.id).filter(loan_is_active = True)
     loan_submit = None
     #loans = user.loans_set.all()
     print(loans)
@@ -260,13 +255,9 @@ def loansUser(request, pk):
         loan_del = Loans.objects.get(id = loan_id_del)
         loan_del.loan_is_active = False
         loan_del.save()
-        return redirect('loans-user', pk = user.id)
+        return redirect('loans-user')
 
-
-    if request.user != user:
-        return redirect('home')
-
-    context = {'user': user, 'loans': loans, 'admin_loans': admin_loans, 'loan_submit': loan_submit}
+    context = {'current_user': current_user, 'loans': loans, 'admin_loans': admin_loans, 'loan_submit': loan_submit}
 
     return render(request, 'base/loans.html', context)
 

@@ -71,7 +71,7 @@
             <p>This username already exists.</p>
             {% elif password_check == True %}
             <p>Passwords are not the same.</p>
-            {% else %}
+            {% elif weak_password == True %}
             <p>Your password is too weak.</p>
             {% endif %}
             <button type="submit">
