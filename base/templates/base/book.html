@@ -31,6 +31,9 @@
               </div>
             </form>
             {% endif %}
+            {% if del_or_upd == True %}
+              <p>This book is chceck out. You can't update or delete this book.</p>
+            {% endif %}
           </div>
           {% endif %}
         </div>

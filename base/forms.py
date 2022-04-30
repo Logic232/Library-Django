@@ -18,7 +18,8 @@ class EditBookForm(ModelForm):
 
     class Meta:
         model = Books
-        fields = ('book_name', 'book_isbn', 'book_edition', 'author_name', 'publisher_name')
+        fields = ('book_name', 'book_isbn', 'book_edition', 'author_name', 'publisher_name')        
+
 
 class CustomerForm(UserCreationForm):
     email = EmailField()

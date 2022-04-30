@@ -109,6 +109,7 @@ def book(request, pk):
     book_publisher = book.publisher_name
     book_isbn = book.book_isbn
     book_loan = list(Books.objects.filter(book_name=pk).values_list('loan_id', flat=True))
+    del_or_upd = None
     #book_loan = book.values_list('Loans', flat=True)
 
     if request.method == 'POST' and 'loan' in request.POST:
@@ -117,7 +118,7 @@ def book(request, pk):
             loan.loan_is_active = True
             loan.user_name = request.user
             loan.save()
-            return redirect('loans-user', pk=request.user.id)
+            return redirect('loans-user')
         else:
             return redirect('book', pk=book_name)
 
@@ -126,7 +127,7 @@ def book(request, pk):
         if loan.loan_is_active == False:
             return redirect('update-book', pk=book_name)
         else:
-            return redirect('book', pk=book_name)
+            del_or_upd = True
 
     #if request.method == 'POST' and 'delete' in request.POST:
 
@@ -136,10 +137,10 @@ def book(request, pk):
             loan.delete()
             return redirect('home')
         else:
-            return redirect('book', pk=book_name)
+            del_or_upd = True
 
     context = {'book': book, 'book_name': book_name, 'book_edition': book_edition, 
-    'book_author': book_author, 'book_publisher': book_publisher, 'book_isbn': book_isbn, 'book_loan': book_loan}
+    'book_author': book_author, 'book_publisher': book_publisher, 'book_isbn': book_isbn, 'book_loan': book_loan, 'del_or_upd': del_or_upd}
     return render(request, 'base/book.html', context)
 
 def updateBook(request, pk):
@@ -176,7 +177,7 @@ def addBook(request):
     form = BookForm()
     authors = Author.objects.all()
     publishers = Publisher.objects.all()
-    loans = Loans.objects.count()
+    loans = Loans.objects.latest('id')
 
     if request.method == 'POST':
         test_book_name = request.POST.get('book_name')
@@ -194,7 +195,8 @@ def addBook(request):
             if loans == None:
                 loans_id = 1
             else:
-                loans_id = loans + 1
+                temp_var = str(loans)
+                loans_id = 1 + int(temp_var) 
 
             loans_id_create = Loans.objects.create(id = loans_id)
             Books.objects.create(
@@ -231,7 +233,7 @@ def updateUser(request):
         if form.is_valid():
             form.save()
             user = request.user
-            return redirect('user-profile', pk=user.id)
+            return redirect('user-profile')
 
     return render(request, 'base/update-user.html', {'form': form})
 
