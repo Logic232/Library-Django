@@ -1,3 +1,4 @@
+{% if books %}
 {% for book in books %}
 <div>
   <br>
@@ -10,3 +11,6 @@
   </div>
 </div>
 {% endfor %}
+{% else %}
+<p>I couldn't find any results for this phrase.</p>
+{% endif %}

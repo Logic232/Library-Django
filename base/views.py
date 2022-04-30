@@ -85,7 +85,7 @@ def home(request):
 
     return render(request, 'base/home.html', context)
 
-def home_sec(request):
+def homeSec(request):
 
     q = request.GET.get('q') if request.GET.get('q') != None else ''
 
