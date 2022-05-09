@@ -1,13 +1,11 @@
 {% extends 'main.html' %} {% block content %}
 <main>
-  <div>
     <div>
-      <div>
         <div>
           <a href="{% url 'home' %}">
             back
           </a>
-          <h3>Create/Update Book</h3>
+          <h3>Create Book</h3>
         </div>
       </div>
       <div>
@@ -23,55 +21,62 @@
             {{form.book_isbn}}
           </div>
 
-          <div>
-            <label for="book_edition">Book edition</label>
-            {{form.book_edition}}
-          </div>
+                    <div>
+                        <label for="book_isbn">Book ISBN</label>
+                        {{form.book_isbn}}
+                    </div>
 
-          <div>
-            <label for="author_name">Author</label>
-            <input
-              required
-              type="text"
-              value="{{books.author_name.author_name}}"
-              name="author"
-              list="author-list"
-            />
-            <datalist id="author-list">
-              <select id="author-list">
-                {% for author in authors %}
-                <option value="{{author.author_name}}">{{author.author_name}}</option>
-                {% endfor %}
-              </select>
-            </datalist>
-          </div>
+                    <div>
+                        <label for="book_edition">Book edition</label>
+                        {{form.book_edition}}
+                    </div>
 
-          <div>
-            <label for="publisher_name">Publisher</label>
-            <input
-              required
-              type="text"
-              value="{{books.publisher_name.publisher_name}}"
-              name="publisher"
-              list="publisher-list"
-            />
-            <datalist id="publisher-list">
-              <select id="publisher_name">
-                {% for publisher in publishers %}
-                <option value="{{publisher.publisher_name}}">{{publisher.publisher_name}}</option>
-                {% endfor %}
-              </select>
-            </datalist>
-          </div>
+                    <div>
+                        <label for="author_name">Author</label>
+                        <input
+                            required
+                            type="text"
+                            value="{{books.author_name.author_name}}"
+                            name="author"
+                            list="author-list"
+                        />
+                        <datalist id="author-list">
+                            <select id="author-list">
+                                {% for author in authors %}
+                                <option value="{{author.author_name}}">
+                                    {{author.author_name}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </datalist>
+                    </div>
+                    <div>
+                        <label for="publisher_name">Publisher</label>
+                        <input
+                            required
+                            type="text"
+                            value="{{books.publisher_name.publisher_name}}"
+                            name="publisher"
+                            list="publisher-list"
+                        />
+                        <datalist id="publisher-list">
+                            <select id="publisher_name">
+                                {% for publisher in publishers %}
+                                <option value="{{publisher.publisher_name}}">
+                                    {{publisher.publisher_name}}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </datalist>
+                    </div>
 
-          <div>
-            <a href="{% url 'home' %}">Cancel</a>
-            <button type="submit">Submit</button>
-          </div>
-
-        </form>
-      </div>
+                    <div>
+                        <a href="{% url 'home' %}">Cancel</a>
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </main>
 {% endblock content %}

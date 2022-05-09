@@ -43,7 +43,7 @@
 <form method="POST" action="">
     {% csrf_token %}
     <p>Are you sure to end this check out?</p>
-    <a href="{% url 'loans-user' user.id %}">Cancel</a>
+    <a href="{% url 'loans-user' %}">Cancel</a>
     <button type="submit" name="check" value="{{loan_submit}}">Submit</button>
 </form>
 {% endif %}

@@ -27,7 +27,7 @@
             <h3>Publisher: {{loan.books.publisher_name}}</h3>            
             <h3>Date of check out: {{loan.loan_date|date:'m.d.Y'}}</h3>
         </div>
-        <a href="{% url 'loans-user' user.id %}">
+        <a href="{% url 'loans-user' %}">
           <p>Show all my check outs ({{number_of_loans}})</p>
         </a>
         {% endfor %}

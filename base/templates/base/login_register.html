@@ -1,91 +1,150 @@
 {% extends 'main.html' %} {% block content %}
-
-<main>
-    {% if page == 'login' %}
-    <div>
-      <div>
-        <div>
-          <div>
-            <h3>Login</h3>
-          </div>
-        </div>
-        <div>
-          <h2>Find your book</h2>
-  
-          <form class="form" method="POST" action="">
-            {% csrf_token %}
-  
-            <div>
-              <label for="login">Username</label>
-              <input
-                id="username"
-                name="username"
-                type="text"
-                placeholder="e.g. kowal_kox"
-                required
-              />
-            </div>
-            <div>
-              <label for="password">Password</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
-                required
-              />
-            </div>
-            {% if user_check == True %}
-            <p>Your login or password is incorrect.</p>
-            {% endif %}
-            <button type="submit">
-              Login
-            </button>
-          </form>
-  
-          <div>
-            <p>Haven't signed up yet?</p>
-            <a href="{% url 'register' %}">Sign Up</a>
-          </div>
-        </div>
-      </div>
+<main class="w-screen px-5 max-w-[856px] m-auto">
+    <div class="flex justify-center gap-2">
+        <svg
+            version="1.1"
+            id="Capa_1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 360 360"
+            style="enable-background: new 0 0 360 360"
+            xml:space="preserve"
+            class="w-[50px]"
+        >
+            <g id="XMLID_982_">
+                <path
+                    id="XMLID_983_"
+                    style="fill: #00d7df"
+                    d="M360,23.333H200l-20,10l-20-10H0v290h137.773
+		c8.888,13.992,24.515,23.333,42.227,23.333h0c17.712,0,33.339-9.342,42.227-23.333H360V23.333z"
+                />
+                <path
+                    id="XMLID_984_"
+                    style="fill: #00969b"
+                    d="M200,23.333l-18.75,9.375v303.917c17.193-0.43,32.299-9.632,40.977-23.292H360v-290
+		H200z"
+                />
+                <polygon
+                    id="XMLID_985_"
+                    style="fill: #ffeb99"
+                    points="40,273.333 40,63.333 150.557,63.333 180,78.055 209.443,63.333 
+		320,63.333 320,273.333 	"
+                />
+                <polygon
+                    id="XMLID_986_"
+                    style="fill: #ffe477"
+                    points="209.443,63.333 181.25,77.43 181.25,273.333 320,273.333 320,63.333 	"
+                />
+                <rect id="XMLID_37_" x="65" y="103.333" style="fill: #ffda44" width="80" height="20" />
+                <rect id="XMLID_36_" x="65" y="158.333" style="fill: #ffda44" width="80" height="20" />
+                <rect id="XMLID_35_" x="65" y="213.333" style="fill: #ffda44" width="80" height="20" />
+                <rect id="XMLID_34_" x="215" y="103.333" style="fill: #ffcd00" width="80" height="20" />
+                <rect id="XMLID_33_" x="215" y="158.333" style="fill: #ffcd00" width="80" height="20" />
+                <rect id="XMLID_32_" x="215" y="213.333" style="fill: #ffcd00" width="80" height="20" />
+                <polygon
+                    id="XMLID_3_"
+                    style="fill: #00969b"
+                    points="250,60 298.148,60 298.148,150 274.074,140 250,150 	"
+                />
+            </g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+            <g></g>
+        </svg>
+        <h1 class="text-center text-4xl font-bold py-10 tracking-wide leading-snug">LIBRARY</h1>
     </div>
+
+    {% if page == 'login' %}
+    <div class="max-w-full px-5 shadow-3xl rounded-lg mb-20 grid place-content-center pb-10">
+        <h2 class="text-center text-4xl font-bold py-10 px-10 tracking-wide leading-snug">Login to you account</h2>
+        <div class="w-full max-w-[636px] lg:w-[636px]">
+            <form class="form" met hod="POST" action="">
+                <div class="w-full">
+                    {% csrf_token %}
+                    <div class="w-full rounded-lg mt-6">
+                        <label for="login" class="block font-medium text-xl pb-3">Username</label>
+                        <input
+                            id="username"
+                            name="username"
+                            type="text"
+                            placeholder="e.g. kowal_kox"
+                            required
+                            class="w-full h-[60px] px-5 rounded-lg text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label for="password" class="block font-medium text-xl pb-3">Password</label>
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+                            required
+                            class="w-full h-[60px] px-5 rounded-lg text-sm"
+                        />
+                    </div>
+                    {% if user_check == True %}
+                    <p>Your login or password is incorrect.</p>
+                    {% endif %}
+                    <button
+                        type="submit"
+                        class="w-[215px] h-[50px] text-white text-[18px] font-semibold text-center bg-[#fd4c5c] rounded-sm mt-5"
+                    >
+                        Login
+                    </button>
+                </div>
+            </form>
+        </div>
+        <p class="text-base text-[#000B33] font-bold mt-5">Haven't signed up yet?</p>
+        <a href="{% url 'register' %}" class="text-[#fd4c5c] text-xl underline font-bold">Sign Up</a>
+    </div>
+
     {% else %}
-    <div>
-      <div>
-        <div>
-          <div>
-            <h3>Register</h3>
-          </div>
+    <div class="max-w-full px-5 shadow-3xl rounded-lg mb-20 grid place-content-center pb-10">
+        <h2 class="text-center text-4xl font-bold py-10 px-10 tracking-wide leading-snug">Create your account</h2>
+        <div class="w-full max-w-[636px] lg:w-[636px]">
+            <form class="" method="POST" action="">
+                <div class="w-full">
+                    {% csrf_token %} {% for field in form %}
+                    <div class="w-full rounded-lg mt-6">
+                        <label class="block font-medium text-xl pb-3" for="firstName">{{field.label}}</label>
+                        <div class="w-full h-[60px] text-sm">{{field}}</div>
+                    </div>
+                    {% endfor %} {% if name_check == True %}
+                    <p>This username already exists.</p>
+                    {% elif password_check == True %}
+                    <p>Passwords are not the same.</p>
+                    {% elif weak_password == True %}
+                    <p>Your password is too weak.</p>
+                    {% endif %}
+                    <button
+                        type="submit"
+                        class="w-[215px] h-[50px] text-white text-[18px] font-semibold text-center bg-[#fd4c5c] rounded-sm mt-5"
+                    >
+                        Create Your Account
+                    </button>
+                </div>
+            </form>
         </div>
-        <div>
-          <h2>Find your book</h2>
-          <form class="form" method="POST" action="">
-            {% csrf_token %} {% for field in form %}
-            <div>
-              <label for="login">{{field.label}}</label>
-              {{field}}
-            </div>
-            {% endfor %}
-            {% if name_check == True %}
-            <p>This username already exists.</p>
-            {% elif password_check == True %}
-            <p>Passwords are not the same.</p>
-            {% elif weak_password == True %}
-            <p>Your password is too weak.</p>
-            {% endif %}
-            <button type="submit">
-              Register
-            </button>
-          </form>
-  
-          <div>
-            <p>Already signed up?</p>
-            <a href="{% url 'login' %}">Login</a>
-          </div>
+        <div class="grid gap-y-2 mt-6">
+            <p class="text-base text-[#000B33] font-bold">Already have an account?</p>
+            <a href="{% url 'login' %}" class="text-[#fd4c5c] text-xl underline font-bold">Sign in now</a>
         </div>
-      </div>
     </div>
     {% endif %}
-  </main>
-  {% endblock content %} 
+</main>
+{% endblock content %}

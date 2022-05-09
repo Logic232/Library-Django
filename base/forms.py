@@ -1,4 +1,4 @@
-from django.forms import CharField, EmailField, ModelForm
+from django.forms import CharField, EmailField, ModelForm, TextInput
 from .models import Books, User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
@@ -18,7 +18,8 @@ class EditBookForm(ModelForm):
 
     class Meta:
         model = Books
-        fields = ('book_name', 'book_isbn', 'book_edition', 'author_name', 'publisher_name')
+        fields = ('book_name', 'book_isbn', 'book_edition', 'author_name', 'publisher_name')        
+
 
 class CustomerForm(UserCreationForm):
     email = EmailField()
@@ -28,6 +29,18 @@ class CustomerForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            new_data = {
+                "placeholder": f'{str(field)}',
+                'class': "w-full h-[60px] px-5 rounded-lg text-sm"
+            }
+            self.fields[str(field)].widget.attrs.update(
+                new_data
+            )
+
 
 
 class EditCustomerForm(ModelForm):
