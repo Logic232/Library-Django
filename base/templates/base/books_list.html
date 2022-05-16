@@ -1,16 +1,23 @@
-{% if books %}
-{% for book in books %}
-<div>
-  <br>
-  <div>
-    <a href="{% url 'book' book.book_name %}">Title: {{book.book_name}}</a>
-  </div>
-  <div>
-      <p>Author: {{book.author_name.author_name}}</p>
-      <p>Publisher: {{book.publisher_name.publisher_name}}</p>
-  </div>
+<div class="bg-blue flex justify-center items-center flex-wrap mt-10">
+    {% if books %} {% for book in books %}
+    <div
+        class="flex justify-center w-full max-w-[306px] h-[411px] rounded-lg shadow-3xl hover:scale-105 duration-200 cursor-pointer"
+    >
+        <a href="{% url 'book' book.book_name %}" class="self-start text-xl font-semibold">
+            <div class="w-full max-w-[266px] h-full">
+                <img
+                    src="https://images.pexels.com/photos/448835/pexels-photo-448835.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
+                    alt=""
+                    class="w-full h-[276px] rounded-lg mt-5 self-center"
+                />
+                <div class="mt-5 ml-2 text-[#000B33] truncate">
+                    <p>{{book.book_name}}</p>
+                    <p class="text-base font-medium">{{book.author_name.author_name}} (2008)</p>
+                </div>
+            </div>
+        </a>
+    </div>
 </div>
-{% endfor %}
-{% else %}
+{% endfor %} {% else %}
 <p>I couldn't find any results for this phrase.</p>
 {% endif %}

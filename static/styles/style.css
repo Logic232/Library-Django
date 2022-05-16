@@ -1,3 +1,30 @@
 input {
     border: 1px solid rgba(55, 124, 253, 0.2) !important;
 }
+.navigation {
+    position: absolute;
+    width: 248px;
+    height: max-content;
+    border-radius: 15px;
+    right: 40px;
+    top: 80px;
+    background: #fff;
+    transform: scale(0);
+    transition: all 0.3s ease-in-out;
+    transform-origin: 90% top;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.1);
+}
+.navigation::before {
+    content: "";
+    width: 20px;
+    height: 12px;
+    position: absolute;
+    background: #fff;
+    top: -11px;
+    right: 21px;
+    border-radius: 53% 47% 50% 50% / 100% 100% 0% 0%;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+.navigation.active {
+    transform: scale(1);
+}
