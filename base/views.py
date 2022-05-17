@@ -1,10 +1,12 @@
+import django
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from base.forms import BookForm, CustomerForm, EditCustomerForm, EditBookForm
+from base.forms import BookForm, CustomerForm, EditCustomerForm, PasswordChangingForm
 from .models import Author, Books, Loans, Publisher
+from django.contrib.auth.views import PasswordChangeView
 
 
 # Create your views here.
@@ -236,6 +238,9 @@ def updateUser(request):
             return redirect('user-profile')
 
     return render(request, 'base/update-user.html', {'form': form})
+
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangingForm
 
 
 @login_required(login_url='login')

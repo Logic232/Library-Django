@@ -1,7 +1,7 @@
-from django.forms import CharField, EmailField, ModelForm, TextInput
+from pyexpat import model
+from django.forms import CharField, EmailField, ModelForm, PasswordInput
 from .models import Books, User
-from django.contrib.auth.forms import UserCreationForm
-from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 
 class BookForm(ModelForm):
     class Meta:
@@ -51,3 +51,12 @@ class EditCustomerForm(ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
+
+class PasswordChangingForm(PasswordChangeForm):
+    old_password = CharField(widget=PasswordInput(attrs={'class': 'form-control', 'type': 'password'}))
+    new_password1 = CharField(max_length=100, widget=PasswordInput(attrs={'class': 'form-control', 'type': 'password'}))
+    new_password2 = CharField(max_length=100, widget=PasswordInput(attrs={'class': 'form-control', 'type': 'password'}))
+
+    class Meta:
+        model = User
+        fields = ('old_password', 'new_password1', 'new_password2')

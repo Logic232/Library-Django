@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-)%7^^$g68a8c%^v#^5z+6v-)kyxd65punl*tg0wz(c643h(0lw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -86,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'base_db',
         'USER': 'postgres',
-        'PASSWORD': 'kowalkox',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -133,6 +133,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
+STATIC_ROOT = '/var/www/mysite/assets/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -144,5 +145,3 @@ TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-
-NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"

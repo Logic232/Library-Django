@@ -12,5 +12,6 @@ urlpatterns = [
     path('book/<str:pk>/', views.book, name="book"),
     path('book/<str:pk>/edit', views.updateBook, name="update-book"),
     path('update-user/', views.updateUser, name="update-user"),
+    path('password/', views.PasswordsChangeView.as_view(template_name = 'base/change-password.html'), name="update-password"),
     path('loans/', views.loansUser, name="loans-user"),
 ]
