@@ -2,34 +2,34 @@
 
 {% block content %}
 {% if request.user == user %}
-<main>
-    <div>
-      <div>
-        <div>
-          <div>
-            <h3>Login / {{user.username}}</h3>
-            <h3>Imie Nazwisko / {{user.first_name}} {{user.last_name}}</h3>
-            <p>Mail / {{user.email}}</p>
-            <a href="{% url 'update-user' %}">Edit Profile</a>
+<main class="w-full h-full">
+  <h1 class="text-center text-3xl lg:text-5xl font-semibold py-5"> Personal Info</h1>
+  <div class="w-full h-auto grid place-content-center">
+      <div class="grid place-content-center">
+        <h3><span class="font-bold">Login: </span>{{user.username}}</h3>
+        <h3><span class="font-bold">Imie i Nazwisko:</span> {{user.first_name}} {{user.last_name}}</h3>
+        <p><span class="font-bold">Mail:</span> {{user.email}}</p>
+        <div class="self-center place-self-center my-5">
+          <a class="" href="{% url 'update-user' %}"><button
+            class='w-[215px] h-[50px] text-white text-[18px] font-semibold text-center bg-[#fd4c5c] rounded-sm mt-5'>Edit
+            Profile</button></a>
           </div>
-        </div>
-        <div>
-          <div>
-            <h2>Your last check out:</a>
-            </h2>
-          </div>
-        </div>
+      </div>
+    <div class="w-full h-full">
+      <h2 class="text-center text-xl font-semibold">Your last check out:</a>
+      </h2>
+      <div class="w-full h-full justify-center gap-2 grid place-content-center">
         {% if loans.exists %}
         {% for loan in last_loan %}
-        <div>
-            <h3>Title: {{loan.books.book_name}}</h3>
-            <h3>Author: {{loan.books.author_name}}</h3>
-            <h3>Publisher: {{loan.books.publisher_name}}</h3>            
-            <h3>Date of check out: {{loan.loan_date|date:'m.d.Y'}}</h3>
+        <div class="grid place-content-center">
+          <h3><span class="text-base font-semibold">Title: </span>{{loan.books.book_name}}</h3>
+          <h3><span class="text-base font-semibold">Author:</span> {{loan.books.author_name}}</h3>
+          <h3><span class="text-base font-semibold">Publisher:</span> {{loan.books.publisher_name}}</h3>
+          <h3><span class="text-base font-semibold">Date of check out:</span> {{loan.loan_date|date:'m.d.Y'}}</h3>
         </div>
-        <a href="{% url 'loans-user' %}">
-          <p>Show all my check outs ({{number_of_loans}})</p>
-        </a>
+          <a href="{% url 'loans-user' %}" class="text-[#fd4c5c] text-xl underline font-bold block md:pl-5">
+            <p>Show all my check outs ({{number_of_loans}})</p>
+          </a>
         {% endfor %}
         {% else %}
         <div>
@@ -38,6 +38,7 @@
         {% endif %}
       </div>
     </div>
-  </main>
+  </div>
+</main>
 {% endif %}
 {% endblock %}

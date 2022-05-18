@@ -28,3 +28,25 @@ input {
 .navigation.active {
     transform: scale(1);
 }
+.password-label label {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    display: block;
+    font-weight: 500;
+    padding-bottom: 0.75rem;
+}
+
+.password-label p {
+    width: 100%;
+    border-radius: 0.5rem;
+    margin-top: 1.5rem;
+}
+.form-input input {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    height: 60px;
+}

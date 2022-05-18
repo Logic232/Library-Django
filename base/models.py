@@ -23,8 +23,7 @@ class Loans(models.Model):
     class Meta:
         ordering = ['-loan_date', '-loan_date_created']   
 
-    def __str__(self):
-        return str(self.id)
+
 
 class Books(models.Model):
     book_name = models.CharField(max_length=50)
@@ -34,5 +33,4 @@ class Books(models.Model):
     publisher_name = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     loan_id = models.OneToOneField(Loans, on_delete=models.CASCADE, blank=True)
 
-    def __str__(self):
-        return self.book_name 
+
