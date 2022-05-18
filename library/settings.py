@@ -86,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'base_db',
         'USER': 'postgres',
-        'PASSWORD': '',
+        'PASSWORD': 'kowalkox',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -138,8 +138,7 @@ STATIC_ROOT = '/var/www/mysite/assets/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = [

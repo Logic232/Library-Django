@@ -51,6 +51,17 @@ class EditCustomerForm(ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
+        
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            new_data = {
+                "placeholder": f'{str(field)}',
+                'class': "w-full h-[60px] px-5 rounded-lg text-sm"
+            }
+            self.fields[str(field)].widget.attrs.update(
+                new_data
+            )
 
 class PasswordChangingForm(PasswordChangeForm):
     old_password = CharField(widget=PasswordInput(attrs={'class': 'form-control', 'type': 'password'}))
@@ -60,3 +71,14 @@ class PasswordChangingForm(PasswordChangeForm):
     class Meta:
         model = User
         fields = ('old_password', 'new_password1', 'new_password2')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields:
+            new_data = {
+                "placeholder": f'{str(field)}',
+                'class': "w-full h-[60px] px-5 rounded-lg text-sm"
+            }
+            self.fields[str(field)].widget.attrs.update(
+                new_data
+            )

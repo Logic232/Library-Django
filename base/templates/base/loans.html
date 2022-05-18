@@ -1,57 +1,57 @@
-{% extends 'main.html' %}
-{% block content %}
+{% extends 'main.html' %} {% block content %} {% if loans.exists %}
+<div class="w-full h-full flex justify-center gap-x-10">
+    <div class="w-full h-full">
+        <h1 class="text-center text-2xl font-semibold">Your check outs</h1>
+        <div class="flex flex-wrap gap-5 justify-center">
+            {% for loan in loans %}
 
-{% if loans.exists %}
-<h1>Your check outs</h1>
-{% for loan in loans %}
+            <div class="border p-2">
+                <a href="{% url 'book' loan.books.book_name %}">
+                    <p class="underline font-bold"><span class="font-bold">Title:</span> {{loan.books.book_name}}</p>
+                </a>
+                <p><span class="font-bold">Author:</span> {{loan.books.author_name}}</p>
+                <p><span class="font-bold">Publisher:</span> {{loan.books.publisher_name}}</p>
+                <p><span class="font-bold">Start date:</span> {{loan.loan_date|date:'m.d.Y'}}</p>
+            </div>
 
-<div>
-    <a href="{% url 'book' loan.books.book_name %}"><h2>Title: {{loan.books.book_name}}</h2></a>
-    <h3>Author: {{loan.books.author_name}}</h3>
-    <h3>Publisher: {{loan.books.publisher_name}}</h3>
-    <h3>Start date: {{loan.loan_date|date:'m.d.Y'}}</h3>
+            {% endfor %} {% else %}
+
+            <h2>You don't have any check outs</h2>
+            {% endif %}
+        </div>
+    </div>
+    <div class="w-full h-full">
+        {% if request.user.is_staff %}
+        <h1>Admin Panel - Check outs</h1>
+        {% if admin_loans.exists %} {% for loan in admin_loans %}
+
+        <div>
+            <a href="{% url 'book' loan.book_name %}">
+                <h2>Title: {{loan.book_name}}</h2>
+            </a>
+            <h3>Author: {{loan.author_name}}</h3>
+            <h3>Publisher: {{loan.publisher_name}}</h3>
+            <h3>Start date: {{loan.loan_id.loan_date|date:'m.d.Y'}}</h3>
+            <h3>User: {{loan.loan_id.user_name.username}}</h3>
+            <h3>Name: {{loan.loan_id.user_name.first_name}} {{loan.loan_id.user_name.last_name}}</h3>
+            <h3>Email: {{loan.loan_id.user_name.email}}</h3>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <button type="submit" name="loan" value="{{loan.loan_id.id}}">End check out</button>
+            </form>
+        </div>
+        {% endfor %} {% if request.method == 'POST' and 'loan' in request.POST %}
+        <form method="POST" action="">
+            {% csrf_token %}
+            <p>Are you sure to end this check out?</p>
+            <a href="{% url 'loans-user' %}">Cancel</a>
+            <button type="submit" name="check" value="{{loan_submit}}">Submit</button>
+        </form>
+        {% endif %} {% else %}
+
+        <h2>Lack of any check outs</h2>
+
+        {% endif %} {% endif %}
+    </div>
 </div>
-
-{% endfor %}
-
-{% else %}
-
-<h2>You don't have any check outs</h2>
-
-{% endif %}
-
-{% if request.user.is_staff %}
-<h1>Admin Panel - Check outs</h1>
-{% if admin_loans.exists %}
-{% for loan in admin_loans %}
-
-<div>
-    <a href="{% url 'book' loan.book_name %}"><h2>Title: {{loan.book_name}}</h2></a>
-    <h3>Author: {{loan.author_name}}</h3>
-    <h3>Publisher: {{loan.publisher_name}}</h3>
-    <h3>Start date: {{loan.loan_id.loan_date|date:'m.d.Y'}}</h3>
-    <h3>User: {{loan.loan_id.user_name.username}}</h3>
-    <h3>Name: {{loan.loan_id.user_name.first_name}} {{loan.loan_id.user_name.last_name}}</h3>
-    <h3>Email: {{loan.loan_id.user_name.email}}</h3>
-    <form method="POST" action="">
-        {% csrf_token %}
-        <button type="submit" name="loan" value="{{loan.loan_id.id}}">End check out</button>
-    </form>
-</div>
-{% endfor %}
-{% if request.method == 'POST' and 'loan' in request.POST %}
-<form method="POST" action="">
-    {% csrf_token %}
-    <p>Are you sure to end this check out?</p>
-    <a href="{% url 'loans-user' %}">Cancel</a>
-    <button type="submit" name="check" value="{{loan_submit}}">Submit</button>
-</form>
-{% endif %}
-{% else %}
-
-<h2>Lack of any check outs</h2>
-
-{% endif %}
-{% endif %}
-
 {% endblock %}
