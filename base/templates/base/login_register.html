@@ -125,11 +125,29 @@
                         <div class="w-full h-[60px] text-sm">{{field}}</div>
                     </div>
                     {% endfor %} {% if name_check == True %}
-                    <p>This username already exists.</p>
+                    <div
+                        class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-5"
+                        role="alert"
+                    >
+                        <strong class="font-bold">This username already exists</strong>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3"> </span>
+                    </div>
                     {% elif password_check == True %}
-                    <p>Passwords are not the same.</p>
+                    <div
+                        class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-5"
+                        role="alert"
+                    >
+                        <strong class="font-bold">Password are not the same</strong>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3"> </span>
+                    </div>
                     {% elif weak_password == True %}
-                    <p>Your password is too weak.</p>
+                    <div
+                        class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-5"
+                        role="alert"
+                    >
+                        <strong class="font-bold">Password are too weak </strong>
+                        <span class="absolute top-0 bottom-0 right-0 px-4 py-3"> </span>
+                    </div>
                     {% endif %}
                     <button
                         type="submit"
