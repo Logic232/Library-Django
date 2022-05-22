@@ -1,7 +1,8 @@
-{% extends 'main.html' %} {% block content %} {% if loans.exists %}
-<div class="w-full h-full flex justify-center gap-x-10">
+{% extends 'main.html' %} {% block content %}
+<div class="w-full h-full flex justify-center gap-x-10 flex-col md:flex-row">
+    {% if loans.exists %}
     <div class="w-full h-full">
-        <h1 class="text-center text-2xl font-semibold">Your check outs</h1>
+        <h1 class="text-center text-2xl font-semibold my-5">Your check outs</h1>
         <div class="flex flex-wrap gap-5 justify-center">
             {% for loan in loans %}
 
@@ -15,43 +16,73 @@
             </div>
 
             {% endfor %} {% else %}
-
-            <h2>You don't have any check outs</h2>
+            <div class="w-full h-full">
+                <h2 class="text-center text-2xl font-semibold my-5">You don't have any check outs</h2>
+            </div>
             {% endif %}
         </div>
     </div>
-    <div class="w-full h-full">
+    <span class="h-full w-[1px] bg-gray-100 absolute left-2/4 top-[88px] -translate-x-2/4 hidden md:block"></span>
+    <div class="w-full h-full relative">
         {% if request.user.is_staff %}
-        <h1>Admin Panel - Check outs</h1>
-        {% if admin_loans.exists %} {% for loan in admin_loans %}
+        <h1 class="text-center text-2xl font-semibold my-5">Admin Panel - Check outs</h1>
+        <div class="flex flex-wrap gap-5 justify-center">
+            {% if admin_loans.exists %} {% for loan in admin_loans %}
+            <div class="border p-2">
+                <div>
+                    <a href="{% url 'book' loan.book_name %}">
+                        <p class="underline font-bold"><span class="font-bold">Title:</span> {{loan.book_name}}</p>
+                    </a>
+                    <h3><span class="font-bold">Author:</span> {{loan.author_name}}</h3>
+                    <h3><span class="font-bold">Publisher:</span> {{loan.publisher_name}}</h3>
+                    <h3><span class="font-bold">Start date:</span> {{loan.loan_id.loan_date|date:'m.d.Y'}}</h3>
+                    <h3><span class="font-bold">User:</span> {{loan.loan_id.user_name.username}}</h3>
+                    <h3>
+                        <span class="font-bold">Name: </span>{{loan.loan_id.user_name.first_name}}
+                        {{loan.loan_id.user_name.last_name}}
+                    </h3>
+                    <h3><span class="font-bold">Email:</span> {{loan.loan_id.user_name.email}}</h3>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <button type="submit" name="loan" value="{{loan.loan_id.id}}">End check out</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %} {% if request.method == 'POST' and 'loan' in request.POST %}
+            <div class="absolute w-full h-full">
+                <div class="absolute bg-white rounded-md shadow-3xl p-5 w-full max-w-[400px] left-2/4 -translate-x-2/4">
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <p class="text-xl text-semibold pb-5">Are you sure to end this check out?</p>
+                        <div class="flex flex-wrap items-center justify-center gap-2">
+                            <a href="{% url 'loans-user' %}">
+                                <button
+                                    class="w-[125px] h-[50px] text-[18px] font-semibold text-center border border-[#fd4c5c] text-[#fd4c5c] rounded-md"
+                                >
+                                    Cancel
+                                </button></a
+                            >
+                            <button
+                                type="submit"
+                                name="check"
+                                value="{{loan_submit}}"
+                                class="w-[125px] h-[50px] text-white text-[18px] font-semibold text-center bg-[#fd4c5c] rounded-md"
+                            >
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+            {% endif %} {% else %}
 
-        <div>
-            <a href="{% url 'book' loan.book_name %}">
-                <h2>Title: {{loan.book_name}}</h2>
-            </a>
-            <h3>Author: {{loan.author_name}}</h3>
-            <h3>Publisher: {{loan.publisher_name}}</h3>
-            <h3>Start date: {{loan.loan_id.loan_date|date:'m.d.Y'}}</h3>
-            <h3>User: {{loan.loan_id.user_name.username}}</h3>
-            <h3>Name: {{loan.loan_id.user_name.first_name}} {{loan.loan_id.user_name.last_name}}</h3>
-            <h3>Email: {{loan.loan_id.user_name.email}}</h3>
-            <form method="POST" action="">
-                {% csrf_token %}
-                <button type="submit" name="loan" value="{{loan.loan_id.id}}">End check out</button>
-            </form>
+            <div class="w-full h-full">
+                <h2 class="text-center text-2xl font-semibold my-5">Lack of any check outs</h2>
+            </div>
+            {% endif %} {% endif %}
         </div>
-        {% endfor %} {% if request.method == 'POST' and 'loan' in request.POST %}
-        <form method="POST" action="">
-            {% csrf_token %}
-            <p>Are you sure to end this check out?</p>
-            <a href="{% url 'loans-user' %}">Cancel</a>
-            <button type="submit" name="check" value="{{loan_submit}}">Submit</button>
-        </form>
-        {% endif %} {% else %}
-
-        <h2>Lack of any check outs</h2>
-
-        {% endif %} {% endif %}
     </div>
 </div>
+
 {% endblock %}
