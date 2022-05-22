@@ -14,14 +14,14 @@
                 <p><span class="font-bold">Publisher:</span> {{loan.books.publisher_name}}</p>
                 <p><span class="font-bold">Start date:</span> {{loan.loan_date|date:'m.d.Y'}}</p>
             </div>
-
-            {% endfor %} {% else %}
+            {% endfor %} 
+        </div>    
+    </div>  
+            {% else %}
             <div class="w-full h-full">
                 <h2 class="text-center text-2xl font-semibold my-5">You don't have any check outs</h2>
-            </div>
+            </div>      
             {% endif %}
-        </div>
-    </div>
     <span class="h-full w-[1px] bg-gray-100 absolute left-2/4 top-[88px] -translate-x-2/4 hidden md:block"></span>
     <div class="w-full h-full relative">
         {% if request.user.is_staff %}

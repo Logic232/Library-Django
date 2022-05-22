@@ -4,5 +4,5 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.python"
     },
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "autopep8"
 }
