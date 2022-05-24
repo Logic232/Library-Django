@@ -181,7 +181,6 @@ def addBook(request):
     form = BookForm()
     authors = Author.objects.all()
     publishers = Publisher.objects.all()
-    loans = Loans.objects.latest('id').id
 
     if request.method == 'POST':
         test_book_name = request.POST.get('book_name')
@@ -198,12 +197,13 @@ def addBook(request):
             publisher, created = Publisher.objects.get_or_create(
                 publisher_name=publisher_name)
 
-            if loans == None:
-                loans_id = 1
-            else:
+            try:
+                loans = Loans.objects.latest('id').id
                 print(loans)
                 temp_var = str(loans)
                 loans_id = 1 + int(temp_var)
+            except:
+                loans_id = 1
 
             loans_id_create = Loans.objects.create(id=loans_id)
             Books.objects.create(
@@ -217,7 +217,7 @@ def addBook(request):
             return redirect('home')
 
     context = {'form': form, 'authors': authors,
-               'publishers': publishers, 'loans': loans}
+               'publishers': publishers}
     return render(request, 'base/book_form.html', context)
 
 

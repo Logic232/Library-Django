@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 
 class Author(models.Model):
@@ -33,3 +35,8 @@ class Books(models.Model):
     author_name = models.ForeignKey(Author, on_delete=models.CASCADE)
     publisher_name = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     loan_id = models.OneToOneField(Loans, on_delete=models.CASCADE, blank=True)
+
+
+@receiver(post_delete, sender=Books)
+def delete_code_constraint_with_question(sender, instance, **kwargs):
+    instance.loan_id.delete()
