@@ -64,6 +64,8 @@
           </form>
           {% endif %}
         </div>
+        {% else %}
+          <a href="{% url 'login' %}">Sign in to check out the book.</a>
       {% endif %}
       </div>
     </div>
