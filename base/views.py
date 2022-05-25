@@ -108,6 +108,8 @@ def book(request, pk):
     book_author = book.author_name
     book_publisher = book.publisher_name
     book_isbn = book.book_isbn
+    book_year = book.book_year
+    book_link = book.book_link
     book_loan = list(Books.objects.filter(
         book_name=pk).values_list('loan_id', flat=True))
     del_or_upd = None
@@ -141,7 +143,7 @@ def book(request, pk):
             del_or_upd = True
 
     context = {'book': book, 'book_name': book_name, 'book_edition': book_edition,
-               'book_author': book_author, 'book_publisher': book_publisher, 'book_isbn': book_isbn, 'book_loan': book_loan, 'del_or_upd': del_or_upd}
+               'book_author': book_author, 'book_publisher': book_publisher, 'book_isbn': book_isbn, 'book_loan': book_loan, 'del_or_upd': del_or_upd, 'book_link': book_link, 'book_year': book_year}
     return render(request, 'base/book.html', context)
 
 
@@ -163,8 +165,10 @@ def updateBook(request, pk):
 
         Books.objects.filter(book_name=pk).update(
             book_name=request.POST.get('book_name'),
+            book_year=request.POST.get('book_year'),
             book_isbn=request.POST.get('book_isbn'),
             book_edition=request.POST.get('book_edition'),
+            book_link=request.POST.get('book_link'),
             author_name=author,
             publisher_name=publisher
         )
@@ -208,8 +212,10 @@ def addBook(request):
             loans_id_create = Loans.objects.create(id=loans_id)
             Books.objects.create(
                 book_name=request.POST.get('book_name'),
+                book_year=request.POST.get('book_year'),
                 book_isbn=request.POST.get('book_isbn'),
                 book_edition=request.POST.get('book_edition'),
+                book_link=request.POST.get('book_link'),
                 author_name=author,
                 publisher_name=publisher,
                 loan_id=loans_id_create

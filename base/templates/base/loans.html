@@ -10,6 +10,8 @@
                 <a href="{% url 'book' loan.books.book_name %}">
                     <p class="underline font-bold"><span class="font-bold">Title:</span> {{loan.books.book_name}}</p>
                 </a>
+                <p><span class="font-bold">Link image:</span> {{loan.books.book_link}}</p> <!--  to mozna zamienic z nazwa ksiazki jako link -->
+                <p><span class="font-bold">Year:</span> {{loan.books.book_year}}</p>
                 <p><span class="font-bold">Author:</span> {{loan.books.author_name}}</p>
                 <p><span class="font-bold">Publisher:</span> {{loan.books.publisher_name}}</p>
                 <p><span class="font-bold">Start date:</span> {{loan.loan_date|date:'m.d.Y'}}</p>
@@ -33,6 +35,8 @@
                     <a href="{% url 'book' loan.book_name %}">
                         <p class="underline font-bold"><span class="font-bold">Title:</span> {{loan.book_name}}</p>
                     </a>
+                    <h3><span class="font-bold">Link image:</span> {{loan.book_link}}</h3>
+                    <h3><span class="font-bold">Year:</span> {{loan.book_year}}</h3>
                     <h3><span class="font-bold">Author:</span> {{loan.author_name}}</h3>
                     <h3><span class="font-bold">Publisher:</span> {{loan.publisher_name}}</h3>
                     <h3><span class="font-bold">Start date:</span> {{loan.loan_id.loan_date|date:'m.d.Y'}}</h3>

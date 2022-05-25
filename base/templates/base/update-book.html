@@ -1,84 +1,92 @@
-{% extends 'main.html' %}
-
-{% block content %}
+{% extends 'main.html' %} {% block content %}
 
 <main>
     <div>
-      <div>
         <div>
-          <div>
-            <a href="{% url 'book' book.book_name %}">  
-                <br>
-                back - button
-            </a>
-            <h3>Edit book</h3>
-          </div>
-        </div>
-          <br>
-        <div>
-          <form class="form" action="" method="POST">
-            {% csrf_token %}
             <div>
-                <label for="book_name">Book title</label>
-                <input type="text" placeholder="{{book.book_name}}" name="book_name" />                
-              </div>
-    
-              <div>
-                <label for="author_name">Author</label>
-                <input
-                  required
-                  type="text"
-                  value="{{books.author_name.author_name}}"
-                  name="author"
-                  list="author-list"
-                  placeholder="{{book.author_name}}"
-                />
-                <datalist id="author-list">
-                  <select id="author-list">
-                    {% for author in authors %}
-                    <option value="{{author.author_name}}">{{author.author_name}}</option>
-                    {% endfor %}
-                  </select>
-                </datalist>
-              </div>
-    
-              <div>
-                <label for="publisher_name">Publisher</label>
-                <input
-                  required
-                  type="text"
-                  value="{{books.publisher_name.publisher_name}}"
-                  name="publisher"
-                  list="publisher-list"
-                  placeholder="{{book.publisher_name}}"
-                />
-                <datalist id="publisher-list">
-                  <select id="publisher_name">
-                    {% for publisher in publishers %}
-                    <option value="{{publisher.publisher_name}}">{{publisher.publisher_name}}</option>
-                    {% endfor %}
-                  </select>
-                </datalist>
-              </div>
-
-              <div>
-                <label for="book_edition">Book edition</label>
-                <input type="text" placeholder="{{book.book_edition}}" name="book_edition" />                   
-              </div>
-
-              <div>
-                <label for="book_isbn">Book ISBN</label>
-                <input type="text" placeholder="{{book.book_isbn}}" name="book_isbn" />  
-              </div>
-            
-            <div>
-              <a href="{% url 'book' book.book_name %}">Cancel</a>
-              <button type="submit">Update</button>
+                <div>
+                    <a href="{% url 'book' book.book_name %}">
+                        <br />
+                        back - button
+                    </a>
+                    <h3>Edit book</h3>
+                </div>
             </div>
-          </form>
+            <br />
+            <div>
+                <form class="form" action="" method="POST">
+                    {% csrf_token %}
+                    <div>
+                        <label for="book_name">Book title</label>
+                        <input type="text" placeholder="{{book.book_name}}" name="book_name" />
+                    </div>
+
+                    <div>
+                        <label for="book_year">Book year</label>
+                        <input type="text" placeholder="{{book.book_year}}" name="book_year" />
+                    </div>
+
+                    <div>
+                        <label for="author_name">Author</label>
+                        <input
+                            required
+                            type="text"
+                            value="{{books.author_name.author_name}}"
+                            name="author"
+                            list="author-list"
+                            placeholder="{{book.author_name}}"
+                        />
+                        <datalist id="author-list">
+                            <select id="author-list">
+                                {% for author in authors %}
+                                <option value="{{author.author_name}}">{{author.author_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </datalist>
+                    </div>
+
+                    <div>
+                        <label for="publisher_name">Publisher</label>
+                        <input
+                            required
+                            type="text"
+                            value="{{books.publisher_name.publisher_name}}"
+                            name="publisher"
+                            list="publisher-list"
+                            placeholder="{{book.publisher_name}}"
+                        />
+                        <datalist id="publisher-list">
+                            <select id="publisher_name">
+                                {% for publisher in publishers %}
+                                <option value="{{publisher.publisher_name}}">{{publisher.publisher_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </datalist>
+                    </div>
+
+                    <div>
+                        <label for="book_edition">Book edition</label>
+                        <input type="text" placeholder="{{book.book_edition}}" name="book_edition" />
+                    </div>
+
+                    <div>
+                        <label for="book_isbn">Book ISBN</label>
+                        <input type="text" placeholder="{{book.book_isbn}}" name="book_isbn" />
+                    </div>
+
+                    <div>
+                        <label for="book_link">Book image-link</label>
+                        <input type="text" placeholder="{{book.book_link}}" name="book_link" />
+                    </div>
+
+                    <div>
+                        <a href="{% url 'book' book.book_name %}">Cancel</a>
+                        <button type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
     </div>
-  </main>
+</main>
 
 {% endblock %}

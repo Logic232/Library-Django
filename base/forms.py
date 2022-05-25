@@ -1,7 +1,8 @@
 from pyexpat import model
-from django.forms import CharField, EmailField, ModelForm, PasswordInput
+from django.forms import CharField, EmailField, IntegerField, ModelForm, PasswordInput
 from .models import Books, User
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+
 
 class BookForm(ModelForm):
     class Meta:
@@ -9,16 +10,20 @@ class BookForm(ModelForm):
         fields = '__all__'
         exclude = ['book_id']
 
+
 class EditBookForm(ModelForm):
     book_name = CharField(max_length=50)
     book_isbn = CharField(max_length=20)
     book_edition = CharField(max_length=20)
     author_name = CharField(max_length=50)
     publisher_name = CharField(max_length=50)
+    book_year = IntegerField()
+    book_link = CharField()
 
     class Meta:
         model = Books
-        fields = ('book_name', 'book_isbn', 'book_edition', 'author_name', 'publisher_name')        
+        fields = ('book_name', 'book_year', 'book_isbn', 'book_edition',
+                  'author_name', 'publisher_name', 'book_link')
 
 
 class CustomerForm(UserCreationForm):
@@ -28,7 +33,8 @@ class CustomerForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+        fields = ('username', 'first_name', 'last_name',
+                  'email', 'password1', 'password2')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -40,7 +46,6 @@ class CustomerForm(UserCreationForm):
             self.fields[str(field)].widget.attrs.update(
                 new_data
             )
-
 
 
 class EditCustomerForm(ModelForm):
@@ -51,7 +56,7 @@ class EditCustomerForm(ModelForm):
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'email')
-        
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field in self.fields:
@@ -63,10 +68,14 @@ class EditCustomerForm(ModelForm):
                 new_data
             )
 
+
 class PasswordChangingForm(PasswordChangeForm):
-    old_password = CharField(widget=PasswordInput(attrs={'class': 'form-control', 'type': 'password'}))
-    new_password1 = CharField(max_length=100, widget=PasswordInput(attrs={'class': 'form-control', 'type': 'password'}))
-    new_password2 = CharField(max_length=100, widget=PasswordInput(attrs={'class': 'form-control', 'type': 'password'}))
+    old_password = CharField(widget=PasswordInput(
+        attrs={'class': 'form-control', 'type': 'password'}))
+    new_password1 = CharField(max_length=100, widget=PasswordInput(
+        attrs={'class': 'form-control', 'type': 'password'}))
+    new_password2 = CharField(max_length=100, widget=PasswordInput(
+        attrs={'class': 'form-control', 'type': 'password'}))
 
     class Meta:
         model = User

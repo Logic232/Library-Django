@@ -30,8 +30,10 @@ class Loans(models.Model):
 
 class Books(models.Model):
     book_name = models.CharField(max_length=50)
-    book_isbn = models.CharField(max_length=20)
+    book_isbn = models.CharField(max_length=20, null=True)
     book_edition = models.CharField(max_length=20, null=True)
+    book_year = models.IntegerField(null=True)
+    book_link = models.TextField(null=True)
     author_name = models.ForeignKey(Author, on_delete=models.CASCADE)
     publisher_name = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     loan_id = models.OneToOneField(Loans, on_delete=models.CASCADE, blank=True)
