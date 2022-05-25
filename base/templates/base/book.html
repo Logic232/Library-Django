@@ -2,72 +2,100 @@
 
 <main>
     <div>
-      <div>
-        <div>
-          <div>
-            <a href="{% url 'home' %}">
-              back
+        <div class="top-0 left-5 box-content w-[50px] h-[50px] p-5">
+            <a href="{% url 'home' %}" class="flex w-full h-full items-center gap-2">
+                <img src="../../static/images/Vector.svg" class="w-full h-full" />
+                <span class="text-2xl font-semibold">BACK</span>
             </a>
-          </div>
-          {% if request.user.is_staff %}
-          <div>
-
-            <form method="POST" action="">
-              {% csrf_token %}
-              <button type="submit" name="update">Update book</button>
-            </form>
-
-            <form method="POST" action="">
-              {% csrf_token %}
-              <button type="submit" name="delete">Delete book</button>
-            </form>
-            {% if request.method == 'POST' and 'delete' in request.POST %}
-            <form class="form" action="" method="POST">
-              {% csrf_token %}
-              <div>
-                <p>Are you sure to delete the book?</p>
-                <a href="{% url 'book' book_name %}">Cancel</a>
-                <button type="submit" name="check">Delete</button>
-              </div>
-            </form>
-            {% endif %}
-            {% if del_or_upd == True %}
-              <p>This book is chceck out. You can't update or delete this book.</p>
-            {% endif %}
-          </div>
-          {% endif %}
         </div>
-        <div>
-          <div>
+        <div class="flex flex-col md:flex-row w-full justify-center gap-5 items-center md:items-start">
             <div>
-              <p>Link image: {{book.book_link}}</p> <!-- Zdjecie ksiazki -->
-              <h3>Title: {{book.book_name}}</h3>
-                <span>Author: {{book.author_name}}</span>
-              </a>
-              <br>
-              <p>Year: {{book.book_year}}</p>
-              <p>Publisher: {{book.publisher_name}}</p>
-              <span>Book edition: {{book.book_edition}}</span>
-              <br>
-              <span>ISBN: {{book.book_isbn}}</span>
+                <img src="{{book.book_link}}" class="w-[261px] h-[381px] object-cover" />
+                {% if request.user.is_staff %}
+                <div class="mt-5 mb-12 md:mb-0">
+                    <div class="flex relative gap-2">
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <button
+                                type="submit"
+                                name="update"
+                                class="w-[125px] h-[50px] text-white text-[18px] font-semibold text-center bg-[#fd4c5c] rounded-md"
+                            >
+                                Update book
+                            </button>
+                        </form>
+
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <button
+                                type="submit"
+                                name="delete"
+                                class="w-[125px] h-[50px] text-[18px] font-semibold text-center border border-[#fd4c5c] text-[#fd4c5c] rounded-md"
+                            >
+                                Delete book
+                            </button>
+                        </form>
+                        <div class="absolute top-0 lef-0 bg-white">
+                            {% if request.method == 'POST' and 'delete' in request.POST %}
+                            <form class="form" action="" method="POST">
+                                {% csrf_token %}
+                                <p class="text-xl font-semibold pb-2 text-center">
+                                    Are you sure to end this check out?
+                                </p>
+                                <div class="flex flex-wrap items-center justify-center gap-2">
+                                    <a href="{% url 'book' book_name %}"
+                                        ><button
+                                            class="w-[125px] h-[50px] text-[18px] font-semibold text-center border border-[#fd4c5c] text-[#fd4c5c] rounded-md"
+                                        >
+                                            Cancel
+                                        </button></a
+                                    >
+                                    <button
+                                        type="submit"
+                                        name="check"
+                                        class="w-[125px] h-[50px] text-white text-[18px] font-semibold text-center bg-[#fd4c5c] rounded-md"
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {% if del_or_upd == True %}
+                    <p class="text-xl font-semibold pb-2 text-center max-w-[261px] mt-2">
+                        This book is chceck out. You can't update or delete this book.
+                    </p>
+                    {% endif %}
+                </div>
+
+                {% endif %}
             </div>
-          </div>
+            <div class="flex flex-col gap-2 md:w-auto mb-10 md:mb-0">
+                <p class="text-xl"><span class="font-semibold">Title:</span> {{book.book_name}}</p>
+                <p class="text-xl"><span class="font-semibold">Author: </span>{{book.author_name}}</p>
+                <p class="text-xl"><span class="font-semibold">Year:</span> {{book.book_year}}</p>
+                <p class="text-xl"><span class="font-semibold">Publisher:</span> {{book.publisher_name}}</p>
+                <p class="text-xl"><span class="font-semibold">Book edition:</span> {{book.book_edition}}</p>
+                <p class="text-xl"><span class="font-semibold">ISBN:</span> {{book.book_isbn}}</p>
+                {% if request.user.is_authenticated %}
+
+                <div>
+                    {% if book.loan_id.loan_is_active == True %}
+                    <p class="text-xl font-bold">Book is on loan</p>
+                    {% else %}
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <button type="submit" name="loan">Check out</button>
+                    </form>
+                    {% endif %}
+                </div>
+                {% else %}
+                <a href="{% url 'login' %}">Sign in to check out the book.</a>
+                {% endif %}
+            </div>
         </div>
-        {% if request.user.is_authenticated %}
-        <div>
-          {% if book.loan_id.loan_is_active == True %}
-            <p>Book is on loan</p>
-          {% else %}
-          <form method="POST" action="">
-            {% csrf_token %}
-            <button type="submit" name="loan">Check out</button>
-          </form>
-          {% endif %}
-        </div>
-        {% else %}
-          <a href="{% url 'login' %}">Sign in to check out the book.</a>
-      {% endif %}
-      </div>
     </div>
-  </main>
-  {% endblock content %}
+</main>
+{% endblock content %}

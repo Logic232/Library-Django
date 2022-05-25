@@ -1,25 +1,27 @@
 {% extends 'main.html' %} {% block content %}
 
 <form method="GET" action="{% url 'home_sec' %}">
-    <div class="w-full flex justify-center gap-3 mt-5">
+    <div class="w-full flex justify-center gap-3 mt-5 flex-col items-center md:flex-row">
         <input
             name="q"
             required
             placeholder="Search for books..."
             class="w-full h-[50px] px-5 rounded-lg text-sm max-w-[450px]"
         />
-        <button
-            type="submit"
-            class="w-[125px] h-[50px] text-white text-[18px] font-semibold text-center bg-[#fd4c5c] rounded-md"
-        >
-            Search
-        </button>
-        {% if request.user.is_staff %}
-        <button
-            class="w-[125px] h-[50px] text-[18px] font-semibold text-center border border-[#fd4c5c] text-[#fd4c5c] rounded-md"
-        >
-            <a href="{% url 'create-book' %}"> Add book </a>
-        </button>
+        <div class="flex gap-2">
+            <button
+                type="submit"
+                class="w-[125px] h-[50px] text-white text-[18px] font-semibold text-center bg-[#fd4c5c] rounded-md"
+            >
+                Search
+            </button>
+            {% if request.user.is_staff %}
+            <button
+                class="w-[125px] h-[50px] text-[18px] font-semibold text-center border border-[#fd4c5c] text-[#fd4c5c] rounded-md"
+            >
+                <a href="{% url 'create-book' %}"> Add book </a>
+            </button>
+        </div>
     </div>
 </form>
 

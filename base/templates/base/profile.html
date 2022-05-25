@@ -22,7 +22,6 @@
         {% if loans.exists %}
         {% for loan in last_loan %}
         <div class="grid place-content-center">
-          <h3><span class="text-base font-semibold">Link image-photo: </span>{{loan.books.book_link}}</h3>
           <h3><span class="text-base font-semibold">Title: </span>{{loan.books.book_name}}</h3>
           <h3><span class="text-base font-semibold">Year: </span>{{loan.books.book_year}}</h3>
           <h3><span class="text-base font-semibold">Author:</span> {{loan.books.author_name}}</h3>

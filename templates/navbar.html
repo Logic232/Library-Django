@@ -73,7 +73,7 @@
         <div class="h-full flex items-center w-auto cursor-pointer profile-picture">
             <img src="../static/images/Icon.png" class="hover:brightness-75 duration-150" />
         </div>
-        <nav class="navigation">
+        <nav class="navigation z-10">
             {% if request.user.is_authenticated %}
             <div class="w-full h-full flex flex-col px-5 justify-around relative gap-y-1 py-1">
                 <a

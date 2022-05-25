@@ -7,11 +7,11 @@
         <div class="flex flex-wrap gap-5 justify-center">
             {% for loan in loans %}
 
-            <div class="border p-2">
+            <div class="border p-2  max-w-[300px]">
                 <a href="{% url 'book' loan.books.book_name %}">
                     <p class="underline font-bold"><span class="font-bold">Title:</span> {{loan.books.book_name}}</p>
                 </a>
-                <p><span class="font-bold">Link image:</span> {{loan.books.book_link}}</p> <!--  to mozna zamienic z nazwa ksiazki jako link -->
+                <!-- <p><span class="font-bold">Link image:</span> {{loan.books.book_link}}</p>  to mozna zamienic z nazwa ksiazki jako link -->
                 <p><span class="font-bold">Year:</span> {{loan.books.book_year}}</p>
                 <p><span class="font-bold">Author:</span> {{loan.books.author_name}}</p>
                 <p><span class="font-bold">Publisher:</span> {{loan.books.publisher_name}}</p>
@@ -28,14 +28,16 @@
     <span class="h-full w-[1px] bg-gray-100 absolute left-2/4 top-[88px] -translate-x-2/4 hidden md:block"></span>
     <div class="w-full h-full relative">
         <h1 class="text-center text-2xl font-semibold my-5">Admin Panel - Check outs</h1>
+        <div class="w-full flex justify-center my-5">
+            <input placeholder="Znajdz ksiazke..." class="w-full max-w-[300px] h-[60px] px-5 rounded-lg text-sm find-book">
+        </div>
         <div class="flex flex-wrap gap-5 justify-center">
             {% if admin_loans.exists %} {% for loan in admin_loans %}
-            <div class="border p-2">
-                <div>
+            <div class="border p-2 max-w-[300px] book-to-find">
+                <p class="underline font-bold"><span class="font-bold">Title:</span> {{loan.book_name}}</p>
                     <a href="{% url 'book' loan.book_name %}">
-                        <p class="underline font-bold"><span class="font-bold">Title:</span> {{loan.book_name}}</p>
                     </a>
-                    <h3><span class="font-bold">Link image:</span> {{loan.book_link}}</h3>
+                    <!-- <h3><span class="font-bold">Link image:</span> {{loan.book_link}}</h3> -->
                     <h3><span class="font-bold">Year:</span> {{loan.book_year}}</h3>
                     <h3><span class="font-bold">Author:</span> {{loan.author_name}}</h3>
                     <h3><span class="font-bold">Publisher:</span> {{loan.publisher_name}}</h3>
@@ -48,9 +50,8 @@
                     <h3><span class="font-bold">Email:</span> {{loan.loan_id.user_name.email}}</h3>
                     <form method="POST" action="">
                         {% csrf_token %}
-                        <button type="submit" name="loan" value="{{loan.loan_id.id}}">End check out</button>
+                        <button type="submit" name="loan" value="{{loan.loan_id.id}}" class="font-semibold border rounded-md border-[#fd4c5c] text-[#fd4c5c] p-1 mt-2">End check out</button>
                     </form>
-                </div>
             </div>
             {% endfor %} {% if request.method == 'POST' and 'loan' in request.POST %}
             <div class="absolute w-full h-full">
@@ -96,11 +97,11 @@
         <div class="flex flex-wrap gap-5 justify-center">
             {% for loan in loans %}
 
-            <div class="border p-2">
+            <div class="border p-2 max-w-[300px]">
                 <a href="{% url 'book' loan.books.book_name %}">
                     <p class="underline font-bold"><span class="font-bold">Title:</span> {{loan.books.book_name}}</p>
                 </a>
-                <p><span class="font-bold">Link image:</span> {{loan.books.book_link}}</p> <!--  to mozna zamienic z nazwa ksiazki jako link -->
+                <!-- <p><span class="font-bold">Link image:</span> {{loan.books.book_link}}</p>  to mozna zamienic z nazwa ksiazki jako link -->
                 <p><span class="font-bold">Year:</span> {{loan.books.book_year}}</p>
                 <p><span class="font-bold">Author:</span> {{loan.books.author_name}}</p>
                 <p><span class="font-bold">Publisher:</span> {{loan.books.publisher_name}}</p>
