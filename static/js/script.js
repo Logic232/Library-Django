@@ -5,10 +5,35 @@ const e = (() => {
         profileImage: qs(".profile-picture"),
         navigationWrapper: qs(".navigation"),
         findBookInput: qs(".find-book"),
-        booksToFind: qsa(".book-to-find")
+        booksToFind: qsa(".book-to-find"),
+        booksList: qsa(".book-image"),
+        bookYearInput: qs("[name=book_year]")
     };
 })();
 
+console.log(e.bookYearInput);
+
+const ChangeMaxNumberValue = (() => {
+    if (!e.bookYearInput) return;
+
+    e.bookYearInput.setAttribute("max", "2022");
+})();
+const CheckImage = (image) => {
+    const request = new XMLHttpRequest();
+    request.open("GET", image.src, true);
+    request.send();
+    request.onload = () => {
+        console.log(request.status);
+        if (request.status !== 200) {
+            image.src = "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
+            image.classList.add("border");
+        }
+    };
+};
+const DetectIfImagesAreValid = (() => {
+    if (e.booksList.length === 0) return;
+    e.booksList.map((book) => CheckImage(book));
+})();
 const ToggleMenu = () => {
     e.navigationWrapper.classList.toggle("active");
 };
@@ -20,14 +45,14 @@ const FindBookHandler = ({ target }) => {
         parsedHTML.includes(value) ? el.classList.remove("hidden") : el.classList.add("hidden");
     });
 };
-if (window.location.pathname === "/loans/" && e.findBookInput)
+if (e.findBookInput)
     e.findBookInput.addEventListener(
         "input",
         debounce((event) => FindBookHandler(event))
     );
 e.profileImage.addEventListener("click", ToggleMenu);
 
-function debounce(func, timeout = 500) {
+function debounce(func, timeout = 300) {
     let timer;
     return (...args) => {
         clearTimeout(timer);

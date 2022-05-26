@@ -22,6 +22,7 @@
                             name="book_name"
                             class="w-full h-[60px] px-5 rounded-lg text-sm"
                             value="{{book.book_name}}"
+                            maxlength="50"
                         />
                     </div>
 
@@ -34,6 +35,7 @@
                             name="book_year"
                             class="w-full h-[60px] px-5 rounded-lg text-sm"
                             value="{{book.book_year}}"
+                            max="2022"
                         />
                     </div>
 
@@ -47,6 +49,7 @@
                             list="author-list"
                             placeholder="{{book.author_name}}"
                             class="w-full h-[60px] px-5 rounded-lg text-sm"
+                            maxlength="50"
                         />
                         <datalist id="author-list">
                             <select id="author-list">
@@ -67,6 +70,7 @@
                             list="publisher-list"
                             placeholder="{{book.publisher_name}}"
                             class="w-full h-[60px] px-5 rounded-lg text-sm"
+                            maxlength="50"
                         />
                         <datalist id="publisher-list">
                             <select id="publisher_name">
@@ -86,6 +90,7 @@
                             placeholder="{{book.book_edition}}"
                             name="book_edition"
                             class="w-full h-[60px] px-5 rounded-lg text-sm"
+                            maxlength="20"
                         />
                     </div>
 
@@ -98,6 +103,7 @@
                             placeholder="{{book.book_isbn}}"
                             name="book_isbn"
                             class="w-full h-[60px] px-5 rounded-lg text-sm"
+                            maxlength="20"
                         />
                     </div>
 
@@ -110,6 +116,7 @@
                             placeholder="{{book.book_link}}"
                             name="book_link"
                             class="w-full h-[60px] px-5 rounded-lg text-sm"
+                            maxlength="50"
                         />
                     </div>
 
