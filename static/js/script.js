@@ -20,7 +20,7 @@ const FindBookHandler = ({ target }) => {
         parsedHTML.includes(value) ? el.classList.remove("hidden") : el.classList.add("hidden");
     });
 };
-if (window.location.pathname === "/loans/")
+if (window.location.pathname === "/loans/" && e.findBookInput)
     e.findBookInput.addEventListener(
         "input",
         debounce((event) => FindBookHandler(event))
