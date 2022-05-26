@@ -16,20 +16,24 @@
                     <div class="w-full rounded-lg mt-6">
                         <label for="book_name" class="block font-medium text-xl pb-3">Book title</label>
                         <input
+                            required
                             type="text"
                             placeholder="{{book.book_name}}"
                             name="book_name"
                             class="w-full h-[60px] px-5 rounded-lg text-sm"
+                            value="{{book.book_name}}"
                         />
                     </div>
 
                     <div class="w-full rounded-lg mt-6">
                         <label for="book_year" class="block font-medium text-xl pb-3">Book year</label>
                         <input
-                            type="text"
+                            required
+                            type="number"
                             placeholder="{{book.book_year}}"
                             name="book_year"
                             class="w-full h-[60px] px-5 rounded-lg text-sm"
+                            value="{{book.book_year}}"
                         />
                     </div>
 
@@ -38,7 +42,7 @@
                         <input
                             required
                             type="text"
-                            value="{{books.author_name.author_name}}"
+                            value="{{book.author_name}}"
                             name="author"
                             list="author-list"
                             placeholder="{{book.author_name}}"
@@ -58,7 +62,7 @@
                         <input
                             required
                             type="text"
-                            value="{{books.publisher_name.publisher_name}}"
+                            value="{{book.publisher_name}}"
                             name="publisher"
                             list="publisher-list"
                             placeholder="{{book.publisher_name}}"
@@ -76,6 +80,8 @@
                     <div class="w-full rounded-lg mt-6">
                         <label for="book_edition" class="block font-medium text-xl pb-3">Book edition</label>
                         <input
+                            required
+                            value="{{book.book_edition}}"
                             type="text"
                             placeholder="{{book.book_edition}}"
                             name="book_edition"
@@ -86,7 +92,9 @@
                     <div class="w-full rounded-lg mt-6">
                         <label for="book_isbn" class="block font-medium text-xl pb-3">Book ISBN</label>
                         <input
+                            required
                             type="text"
+                            value="{{book.book_isbn}}"
                             placeholder="{{book.book_isbn}}"
                             name="book_isbn"
                             class="w-full h-[60px] px-5 rounded-lg text-sm"
@@ -96,7 +104,9 @@
                     <div class="w-full rounded-lg mt-6">
                         <label for="book_link" class="block font-medium text-xl pb-3">Book image-link</label>
                         <input
+                            required
                             type="text"
+                            value="{{book.book_link}}"
                             placeholder="{{book.book_link}}"
                             name="book_link"
                             class="w-full h-[60px] px-5 rounded-lg text-sm"

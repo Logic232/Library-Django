@@ -148,7 +148,6 @@ def book(request, pk):
 
 
 def updateBook(request, pk):
-
     book = Books.objects.get(book_name=pk)
     form = BookForm()
     authors = Author.objects.all()
@@ -203,7 +202,6 @@ def addBook(request):
 
             try:
                 loans = Loans.objects.latest('id').id
-                print(loans)
                 temp_var = str(loans)
                 loans_id = 1 + int(temp_var)
             except:
@@ -266,11 +264,9 @@ def loansUser(request):
         user_name=current_user.id).filter(loan_is_active=True)
     loan_submit = None
     #loans = user.loans_set.all()
-    print(loans)
 
     admin_loans = Books.objects.all().select_related(
         'loan_id').filter(loan_id__loan_is_active=True)
-    print(admin_loans)
 
     if request.method == 'POST' and 'loan' in request.POST:
         loan_submit = request.POST["loan"]

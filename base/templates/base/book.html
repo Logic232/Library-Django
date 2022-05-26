@@ -39,9 +39,7 @@
                             {% if request.method == 'POST' and 'delete' in request.POST %}
                             <form class="form" action="" method="POST">
                                 {% csrf_token %}
-                                <p class="text-xl font-semibold pb-2 text-center">
-                                    Are you sure to end this check out?
-                                </p>
+                                <p class="text-xl font-semibold pb-2 text-center">Are you sure to delete this book?</p>
                                 <div class="flex flex-wrap items-center justify-center gap-2">
                                     <a href="{% url 'book' book_name %}"
                                         ><button
