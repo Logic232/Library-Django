@@ -11,56 +11,52 @@ const e = (() => {
     };
 })();
 
-window.addEventListener("load", () => {
-    if (e.bookYearInput) ChangeMaxNumberValue();
-    if (e.booksList.length === 0) DetectIfImagesAreValid();
-    if (e.findBookInput)
-        e.findBookInput.addEventListener(
-            "input",
-            debounce((event) => FindBookHandler(event))
-        );
-    e.profileImage.addEventListener("click", ToggleMenu);
-
-    const ChangeMaxNumberValue = () => {
-        e.bookYearInput.setAttribute("max", "2022");
+const ChangeMaxNumberValue = (() => {
+    if (!e.bookYearInput) return;
+    e.bookYearInput.setAttribute("max", "2022");
+    e.bookYearInput.setAttribute("maxLength", "4");
+})();
+const CheckImage = (image) => {
+    const request = new XMLHttpRequest();
+    request.open("GET", image.src, true);
+    request.setRequestHeader("Access-Control-Allow-Origin", "*");
+    request.send();
+    request.onload = () => {
+        console.log(request.status);
+        if (request.status !== 200) {
+            image.src = "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
+            image.classList.add("border");
+        }
     };
+};
+const DetectIfImagesAreValid = (() => {
+    if (e.booksList.length === 0) return;
+    e.booksList.map((book) => CheckImage(book));
+})();
+const ToggleMenu = () => {
+    e.navigationWrapper.classList.toggle("active");
+};
 
-    const CheckImage = (image) => {
-        const request = new XMLHttpRequest();
-        request.open("GET", image.src, true);
-        request.send();
-        request.onload = () => {
-            console.log(request.status);
-            if (request.status !== 200) {
-                image.src = "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
-                image.classList.add("border");
-            }
-        };
+const FindBookHandler = ({ target }) => {
+    let value = target.value.toLowerCase();
+    e.booksToFind.forEach((el) => {
+        let parsedHTML = el.innerHTML.toLowerCase();
+        parsedHTML.includes(value) ? el.classList.remove("hidden") : el.classList.add("hidden");
+    });
+};
+if (e.findBookInput)
+    e.findBookInput.addEventListener(
+        "input",
+        debounce((event) => FindBookHandler(event))
+    );
+e.profileImage.addEventListener("click", ToggleMenu);
+
+function debounce(func, timeout = 300) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            func.apply(this, args);
+        }, timeout);
     };
-
-    const DetectIfImagesAreValid = () => {
-        e.booksList.map((book) => CheckImage(book));
-    };
-
-    const ToggleMenu = () => {
-        e.navigationWrapper.classList.toggle("active");
-    };
-
-    const FindBookHandler = ({ target }) => {
-        let value = target.value.toLowerCase();
-        e.booksToFind.forEach((el) => {
-            let parsedHTML = el.innerHTML.toLowerCase();
-            parsedHTML.includes(value) ? el.classList.remove("hidden") : el.classList.add("hidden");
-        });
-    };
-
-    function debounce(func, timeout = 300) {
-        let timer;
-        return (...args) => {
-            clearTimeout(timer);
-            timer = setTimeout(() => {
-                func.apply(this, args);
-            }, timeout);
-        };
-    }
-});
+}

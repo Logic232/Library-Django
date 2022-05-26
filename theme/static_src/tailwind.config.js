@@ -46,6 +46,12 @@ module.exports = {
             boxShadow: {
                 "3xl": "0px 10px 50px -15px rgba(43, 89, 255, 0.2)",
                 black: "0px 0px 15px 5px rgba(0,0,0,0.1)"
+            },
+            gridTemplateColumns: {
+                autoColumns: "repeat( auto-fit, minmax(306px, 1fr))"
+            },
+            gridTemplateRows: {
+                autoRows: "repeat(auto-fit, minmax(411px, 460px))"
             }
         }
     },

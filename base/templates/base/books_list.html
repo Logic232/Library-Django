@@ -1,16 +1,16 @@
-<div class="bg-blue flex justify-center items-center flex-wrap mt-10 gap-5">
+<div class="bg-blue grid grid-cols-autoColumns grid-rows-autoRows my-10 gap-5">
     {% if books %} {% for book in books %}
     <div
-        class="flex justify-center w-full max-w-[306px] h-[411px] rounded-lg shadow-3xl hover:scale-105 duration-200 cursor-pointer"
+        class="flex justify-center w-full max-w-[306px] h-full max-h-[460px] rounded-lg shadow-3xl hover:scale-105 duration-200 cursor-pointer place-self-center overflow-hidden pb-2"
     >
         <a href="{% url 'book' book.book_name %}" class="self-start text-xl font-semibold">
             <div class="w-[266px] h-full">
                 <img
                     src="{{book.book_link}}"
                     alt=""
-                    class="w-full max-w-[266px] h-[276px] rounded-lg mt-5 self-center object-contain block book-image"
+                    class="w-full max-w-[266px] max-h-[276px] h-full rounded-lg mt-5 self-center object-contain block book-image"
                 />
-                <div class="mt-5 ml-2 text-[#000B33] truncate">
+                <div class="mt-5 ml-2 text-[#000B33] break-all block">
                     <p>{{book.book_name}}</p>
                     <p class="text-base font-medium">{{book.author_name.author_name}} ({{book.book_year}})</p>
                 </div>
