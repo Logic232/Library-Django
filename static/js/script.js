@@ -11,16 +11,15 @@ const e = (() => {
     };
 })();
 
-console.log(e.bookYearInput);
-
 const ChangeMaxNumberValue = (() => {
     if (!e.bookYearInput) return;
-
     e.bookYearInput.setAttribute("max", "2022");
+    e.bookYearInput.setAttribute("maxLength", "4");
 })();
 const CheckImage = (image) => {
     const request = new XMLHttpRequest();
     request.open("GET", image.src, true);
+    request.setRequestHeader("Access-Control-Allow-Origin", "*");
     request.send();
     request.onload = () => {
         console.log(request.status);
