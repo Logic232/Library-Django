@@ -18,22 +18,16 @@ const ChangeMaxNumberValue = (() => {
 })();
 const CheckImage = (image) => {
     const newImage = new Image();
-    // const request = new XMLHttpRequest();
-    // request.open("GET", image.src, true);
-    // request.send();
-    // request.onload = () => {
-    //     console.log(request.status);
-    //     if (request.status !== 200) {
-    //         image.src = "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
-    //         image.classList.add("border");
-    //     }
-    // };
-    // request.onerror = (err) => {
-    //     console.error(err);
-    // };
-    newImage.src = image.src;
+    let imageSrc = image.getAttribute("data-src");
+    newImage.src = imageSrc;
     newImage.onerror = () => {
         image.src = "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
+        image.classList.remove("opacity-0");
+        image.classList.add("border");
+    };
+    newImage.onload = () => {
+        image.src = imageSrc;
+        image.classList.remove("opacity-0");
     };
 };
 const DetectIfImagesAreValid = (() => {
