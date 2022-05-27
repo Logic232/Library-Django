@@ -17,18 +17,23 @@ const ChangeMaxNumberValue = (() => {
     e.bookYearInput.setAttribute("maxLength", "4");
 })();
 const CheckImage = (image) => {
-    const request = new XMLHttpRequest();
-    request.open("GET", image.src, true);
-    request.send();
-    request.onload = () => {
-        console.log(request.status);
-        if (request.status !== 200) {
-            image.src = "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
-            image.classList.add("border");
-        }
-    };
-    request.onerror = (err) => {
-        console.error(err);
+    const newImage = new Image();
+    // const request = new XMLHttpRequest();
+    // request.open("GET", image.src, true);
+    // request.send();
+    // request.onload = () => {
+    //     console.log(request.status);
+    //     if (request.status !== 200) {
+    //         image.src = "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
+    //         image.classList.add("border");
+    //     }
+    // };
+    // request.onerror = (err) => {
+    //     console.error(err);
+    // };
+    newImage.src = image.src;
+    newImage.onerror = () => {
+        image.src = "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
     };
 };
 const DetectIfImagesAreValid = (() => {
