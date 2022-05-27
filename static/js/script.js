@@ -22,12 +22,12 @@ const CheckImage = (image) => {
     newImage.src = imageSrc;
     newImage.onerror = () => {
         image.src = "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
-        image.classList.remove("opacity-0");
+        image.classList.remove("image-loading");
         image.classList.add("border");
     };
     newImage.onload = () => {
         image.src = imageSrc;
-        image.classList.remove("opacity-0");
+        image.classList.remove("image-loading");
     };
 };
 const DetectIfImagesAreValid = (() => {

@@ -62,3 +62,9 @@ input {
 .text-break-words {
     word-break: break-all;
 }
+.book-image {
+    transition: all 0.3s linear;
+}
+.image-loading {
+    opacity: 0;
+}
