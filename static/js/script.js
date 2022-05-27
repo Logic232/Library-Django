@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const e = (() => {
     let qs = (c) => document.querySelector(c);
     let qsa = (c) => [...document.querySelectorAll(c)];

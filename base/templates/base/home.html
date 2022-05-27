@@ -16,11 +16,13 @@
                 Search
             </button>
             {% if request.user.is_staff %}
-            <button
-                class="w-[125px] h-[50px] text-[18px] font-semibold text-center border border-[#fd4c5c] text-[#fd4c5c] rounded-md"
+
+            <a
+                href="{% url 'create-book' %}"
+                class="w-[125px] h-[50px] text-[18px] font-semibold text-center border border-[#fd4c5c] text-[#fd4c5c] rounded-md grid place-content-center"
             >
-                <a href="{% url 'create-book' %}"> Add book </a>
-            </button>
+                <span> Add book </span>
+            </a>
         </div>
     </div>
 </form>
