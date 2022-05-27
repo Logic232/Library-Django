@@ -9,13 +9,13 @@
 
             <div class="border p-2  max-w-[300px]">
                 <a href="{% url 'book' loan.books.book_name %}">
-                    <p class="underline font-bold break-all"><span class="font-bold">Title:</span> {{loan.books.book_name}}</p>
+                    <p class="underline font-bold text-break-words"><span class="font-bold">Title:</span> {{loan.books.book_name}}</p>
                 </a>
                 <!-- <p><span class="font-bold">Link image:</span> {{loan.books.book_link}}</p>  to mozna zamienic z nazwa ksiazki jako link -->
-                <p class='break-all'><span class="font-bold">Year:</span> {{loan.books.book_year}}</p>
-                <p class='break-all'><span class="font-bold">Author:</span> {{loan.books.author_name}}</p>
-                <p class='break-all'><span class="font-bold">Publisher:</span> {{loan.books.publisher_name}}</p>
-                <p class='break-all'><span class="font-bold">Start date:</span> {{loan.loan_date|date:'m.d.Y'}}</p>
+                <p class='text-break-words'><span class="font-bold">Year:</span> {{loan.books.book_year}}</p>
+                <p class='text-break-words'><span class="font-bold">Author:</span> {{loan.books.author_name}}</p>
+                <p class='text-break-words'><span class="font-bold">Publisher:</span> {{loan.books.publisher_name}}</p>
+                <p class='text-break-words'><span class="font-bold">Start date:</span> {{loan.loan_date|date:'m.d.Y'}}</p>
             </div>
             {% endfor %} 
         </div>    
@@ -35,19 +35,19 @@
             {% if admin_loans.exists %} {% for loan in admin_loans %}
             <div class="border p-2 max-w-[300px] book-to-find">
                 <a href="{% url 'book' loan.book_name %}">
-                <p class="underline font-bold break-all"><span class="font-bold">Title:</span> {{loan.book_name}}</p>
+                <p class="underline font-bold text-break-words"><span class="font-bold">Title:</span> {{loan.book_name}}</p>
                     </a>
                     <!-- <h3><span class="font-bold">Link image:</span> {{loan.book_link}}</h3> -->
-                    <h3 class="break-all"><span class="font-bold">Year:</span> {{loan.book_year}}</h3>
-                    <h3 class="break-all"><span class="font-bold">Author:</span> {{loan.author_name}}</h3>
-                    <h3 class="break-all"><span class="font-bold">Publisher:</span> {{loan.publisher_name}}</h3>
-                    <h3 class="break-all"><span class="font-bold">Start date:</span> {{loan.loan_id.loan_date|date:'m.d.Y'}}</h3>
-                    <h3 class="break-all"><span class="font-bold">User:</span> {{loan.loan_id.user_name.username}}</h3>
-                    <h3 class="break-all">
+                    <h3 class="text-break-words"><span class="font-bold">Year:</span> {{loan.book_year}}</h3>
+                    <h3 class="text-break-words"><span class="font-bold">Author:</span> {{loan.author_name}}</h3>
+                    <h3 class="text-break-words"><span class="font-bold">Publisher:</span> {{loan.publisher_name}}</h3>
+                    <h3 class="text-break-words"><span class="font-bold">Start date:</span> {{loan.loan_id.loan_date|date:'m.d.Y'}}</h3>
+                    <h3 class="text-break-words"><span class="font-bold">User:</span> {{loan.loan_id.user_name.username}}</h3>
+                    <h3 class="text-break-words">
                         <span class="font-bold">Name: </span>{{loan.loan_id.user_name.first_name}}
                         {{loan.loan_id.user_name.last_name}}
                     </h3>
-                    <h3 class="break-all"><span class="font-bold">Email:</span> {{loan.loan_id.user_name.email}}</h3>
+                    <h3 class="text-break-words"><span class="font-bold">Email:</span> {{loan.loan_id.user_name.email}}</h3>
                     <form method="POST" action="">
                         {% csrf_token %}
                         <button type="submit" name="loan" value="{{loan.loan_id.id}}" class="font-semibold border rounded-md border-[#fd4c5c] text-[#fd4c5c] p-1 mt-2">End check out</button>
@@ -99,13 +99,13 @@
 
             <div class="border p-2 max-w-[300px]">
                 <a href="{% url 'book' loan.books.book_name %}">
-                    <p class="underline font-bold break-all'"><span class="font-bold">Title:</span> {{loan.books.book_name}}</p>
+                    <p class="underline font-bold text-break-words'"><span class="font-bold">Title:</span> {{loan.books.book_name}}</p>
                 </a>
                 <!-- <p><span class="font-bold">Link image:</span> {{loan.books.book_link}}</p>  to mozna zamienic z nazwa ksiazki jako link -->
-                <p class='break-all'><span class="font-bold">Year:</span> {{loan.books.book_year}}</p>
-                <p class='break-all'><span class="font-bold">Author:</span> {{loan.books.author_name}}</p>
-                <p class='break-all'><span class="font-bold">Publisher:</span> {{loan.books.publisher_name}}</p>
-                <p class='break-all'><span class="font-bold">Start date:</span> {{loan.loan_date|date:'m.d.Y'}}</p>
+                <p class='text-break-words'><span class="font-bold">Year:</span> {{loan.books.book_year}}</p>
+                <p class='text-break-words'><span class="font-bold">Author:</span> {{loan.books.author_name}}</p>
+                <p class='text-break-words'><span class="font-bold">Publisher:</span> {{loan.books.publisher_name}}</p>
+                <p class='text-break-words'><span class="font-bold">Start date:</span> {{loan.loan_date|date:'m.d.Y'}}</p>
             </div>
             {% endfor %} 
         </div>    

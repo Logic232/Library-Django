@@ -1,6 +1,6 @@
 {% extends 'main.html' %} {% block content %}
 
-<main>
+<main class="px-2 md:px-5 lg:px-10">
     <div>
         <div class="top-0 left-5 box-content w-[50px] h-[50px] p-5">
             <a href="{% url 'home' %}" class="flex w-full h-full items-center gap-2">
@@ -71,12 +71,16 @@
                 {% endif %}
             </div>
             <div class="flex flex-col gap-2 md:w-auto mb-10 md:mb-0 px-10">
-                <p class="text-xl break-all"><span class="font-semibold">Title:</span> {{book.book_name}}</p>
-                <p class="text-xl break-all"><span class="font-semibold">Author: </span>{{book.author_name}}</p>
-                <p class="text-xl break-all"><span class="font-semibold">Year:</span> {{book.book_year}}</p>
-                <p class="text-xl break-all"><span class="font-semibold">Publisher:</span> {{book.publisher_name}}</p>
-                <p class="text-xl break-all"><span class="font-semibold">Book edition:</span> {{book.book_edition}}</p>
-                <p class="text-xl break-all"><span class="font-semibold">ISBN:</span> {{book.book_isbn}}</p>
+                <p class="text-xl text-break-words"><span class="font-semibold">Title:</span> {{book.book_name}}</p>
+                <p class="text-xl text-break-words"><span class="font-semibold">Author: </span>{{book.author_name}}</p>
+                <p class="text-xl text-break-words"><span class="font-semibold">Year:</span> {{book.book_year}}</p>
+                <p class="text-xl text-break-words">
+                    <span class="font-semibold">Publisher:</span> {{book.publisher_name}}
+                </p>
+                <p class="text-xl text-break-words">
+                    <span class="font-semibold">Book edition:</span> {{book.book_edition}}
+                </p>
+                <p class="text-xl text-break-words"><span class="font-semibold">ISBN:</span> {{book.book_isbn}}</p>
                 {% if request.user.is_authenticated %}
 
                 <div>

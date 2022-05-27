@@ -52,9 +52,13 @@ input {
 }
 .books-list-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(306px, 1fr));
+    grid-template-columns: repeat(auto-fit, 306px);
     grid-template-rows: repeat(auto-fit, minmax(411px, 460px));
     max-width: 1920px;
     margin: 10rem auto;
     justify-items: center;
+    justify-content: center;
+}
+.text-break-words {
+    word-break: break-all;
 }

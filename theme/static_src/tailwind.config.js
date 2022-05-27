@@ -48,7 +48,7 @@ module.exports = {
                 black: "0px 0px 15px 5px rgba(0,0,0,0.1)"
             },
             gridTemplateColumns: {
-                autoColumns: "repeat( auto-fit, minmax(306px, 1fr))"
+                autoColumns: "repeat( auto-fit, 306px)"
             },
             gridTemplateRows: {
                 autoRows: "repeat(auto-fit, minmax(411px, 460px))"

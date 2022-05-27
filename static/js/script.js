@@ -19,7 +19,6 @@ const ChangeMaxNumberValue = (() => {
 const CheckImage = (image) => {
     const request = new XMLHttpRequest();
     request.open("GET", image.src, true);
-    request.setRequestHeader("Access-Control-Allow-Origin", "*");
     request.send();
     request.onload = () => {
         console.log(request.status);
@@ -27,6 +26,9 @@ const CheckImage = (image) => {
             image.src = "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png";
             image.classList.add("border");
         }
+    };
+    request.onerror = (err) => {
+        console.error(err);
     };
 };
 const DetectIfImagesAreValid = (() => {
