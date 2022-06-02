@@ -4,6 +4,9 @@
 <p> Server: Oracle Cloud(VM - Ubuntu) - Nginx - uWSGI </p>
 ### App Preview:
 ![Image](https://s8.gifyu.com/images/Rejestracja.gif)
+
 ![Image](https://s8.gifyu.com/images/drugie_okienko.gif)
+
 ![Image](https://s8.gifyu.com/images/trzecie_okienko.gif)
+
 ![Image](https://s8.gifyu.com/images/admin43845770e6590313.gif)
