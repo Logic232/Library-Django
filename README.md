@@ -7,7 +7,7 @@
 
 ### App Preview:
 
-<p> User: </p>
+<p align="center"> User: </p>
 
 ![Image](https://s8.gifyu.com/images/Rejestracja.gif)
 
@@ -15,6 +15,6 @@
 
 ![Image](https://s8.gifyu.com/images/trzecie_okienko.gif)
 
-<p> Admin: </p>
+<p align="center"> Admin: </p>
 
 ![Image](https://s8.gifyu.com/images/admin43845770e6590313.gif)
