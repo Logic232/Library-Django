@@ -17,4 +17,4 @@
 
 <p align="center"> Admin: </p>
 
-![Image](https://s8.gifyu.com/images/admin43845770e6590313.gif)
+![Image](https://s8.gifyu.com/images/adminf2cdabd6b1f4e171.gif)
